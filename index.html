@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is this emoji combo Problematic?</title>
+<style>
+  body {
+    font-family: "Segoe UI Emoji", Arial, sans-serif;
+    background-color: #f6f7fb;
+    color: #222;
+    text-align: center;
+    margin: 0;
+    padding: 40px;
+  }
+  h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  input {
+    font-size: 2em;
+    text-align: center;
+    width: 70px;
+    margin: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background: #fff;
+  }
+  button {
+    font-size: 1.1em;
+    padding: 10px 25px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: none;
+    background-color: #0078ff;
+    color: white;
+  }
+  button:hover {
+    background-color: #0062cc;
+  }
+  #result {
+    margin-top: 25px;
+    font-size: 1.3em;
+    font-weight: bold;
+  }
+  #desc {
+    margin-top: 50px;
+    font-size: 0.9em;
+    color: #666;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+</head>
+<body>
+
+<h1>Is this emoji combo Problematic?</h1>
+<div>
+  <input id="emoji1" maxlength="2" placeholder=" ">
+  <input id="emoji2" maxlength="2" placeholder=" ">
+</div>
+<button onclick="checkCombo()">Check</button>
+
+<div id="result"></div>
+<div id="desc">
+  Emoji combos can be signals to other problematic people to find them, be aware! <br> by <a style="text-decoration:none;" rel="le corner" href="https://www.tiktok.com/@le.corner.coder?_t=ZS-90Qhga6uZtK&_r=1">le corner</a> <3
+</div>
+
+<script>
+const combos = [
+  // RED (Problematic)
+  { color: "red", emojis: ["🍖🌈","🍓🍰","🌻🪁","🥀🕊️","🪐🌌","🌱☁️","🍋🎀","🥩🍗","💌⛵️","🍥🐾","🐰🌷","🦈💥","🦭🦴","🍟🐾"], desc: "This is the Proshipper emoji combo, it means the user supports every ship including problematic ones." },
+  { color: "red", emojis: ["🍋🌈","🎉🖋️","🧊🍭","🎨🍡","🕊️🖌️","🔏🫀","🫀🌙","📝🌸","🪼🫧","🍡🐾","🔏❣️"], desc: "This is the Profiction emoji combo, used to represent the user believes fiction does not affect reality for example, shipping a minor does not affect a minor in real life." },
+  { color: "red", emojis: ["🌸🌙","🕊️⚠️","⛸️☁️","🥀🧷","🫧☁️","🍋🕊️","🌈🐾","🦇🎀","🎀🧁","🍥🍓"], desc: "This is the Comship emoji combo, used to represent the user ship complicated ships usually human x monster, therapist x person needing therapy, etc. made for immoral but not necessarilly illegal ships." },
+  { color: "red", emojis: ["🎱🎀","🥨🕯️","🔪💎","🥩🍽️"], desc: "This is the Darkship emoji combo, used to represent the user ships ships that are illegal if real. For example, minor x adult, abuser x victim, pet x owner, etc." },
+  { color: "red", emojis: ["📖🖤","☠️❤️","☠️❣️","☠️🌈"], desc: "This is the Darkfiction emoji combo, used to represent the user loves immoral and illegal situations without shipping involved." },
+  { color: "red", emojis: ["🧩🥀","🧩🛳️","🧼🧡"], desc: "This is the Ex-anti emoji combo, used to represent the user was once an anti-problematic shipper but is now neutral or problematic." },
+  { color: "red", emojis: ["🐜🚫","🐜❌"], desc: "This is the Anti-DNI emoji combo, used to represent people who dislike people who dont like others to interact with them under a certain condition, usually problematic." },
+  { color: "red", emojis: ["🥩🌈","🍄🥩"], desc: "This is the Anti-Anti emoji combo, used to represent people who are against / dont want people who are Anti- to something to interact with them." },
+  { color: "red", emojis: ["🎒🍭","🎨📀"], desc: "This is the Kodocon emoji combo, used to represent people who are attracted to young people, especially from the 5-13 group." },
+  { color: "red", emojis: ["🐰🎀","🍭💥","🍭📀"], desc: "This is the Lolicon emoji combo, used to represent people who are attracted to females who are young / minors." },
+  { color: "red", emojis: ["🍯🧸","🧸📀"], desc: "This is the Shotacon emoji combo, used to represent people who are attracted to males who are young / minors." },
+  { color: "red", emojis: ["🌸💫"], desc: "This is the Groomer emoji combo, used to represent people who supports / does rape towards minors." },
+  { color: "red", emojis: ["🥩🧸"], desc: "This is the Cannibalism emoji combo, used to represent people who support / does the act of a species eating one of its own kind (usually human)." },
+  { color: "red", emojis: ["⚰️🕊️"], desc: "This is the Dead Dove: Do Not Eat emoji combo, this is used to represent the user supports harsh or extreme topics like gore, rough porn, etc." },
+  { color: "red", emojis: ["🩷🍭"], desc: "This is the Minor x Minor emoji combo, this used to represent the user ships a minor with another minor." },
+  { color: "red", emojis: ["🔥🍄"], desc: "This is the Abusive Incest emoji combo, its used to represent that the user ships a person with their family member (relative) and any are abusive." },
+  { color: "red", emojis: ["🚪🛍️"], desc: "This is the Incest emoji combo, its used to say the user ships someone by its family member." },
+  { color: "red", emojis: ["🖤💀","🍪🪦"], desc: "This is the necrophilia emoji combo, its used to represent that the user has a romantic / sexual attraction to the deceased (dead)." },
+  { color: "red", emojis: ["🩹❤️‍🩹"], desc: "This is the abuse emoji combo, its used to represent the user supports any type of abuse." },
+  { color: "red", emojis: ["🗺️🍕"], desc: "This is the MAP emoji combo, MAP stands for Minor-Attracted-Person (MAA - Minor-Attracted-Adult), its used to represent that the user has a sexual and/or romantic attraction to minors." },
+
+  // YELLOW (Awareness / survivor)
+  { color: "yellow", emojis: ["💔🍬"], desc: "This is the Hypersexual emoji combo, used to represent people who constantly have sexual feelings no matter what and should be supported even when struggling." },
+  { color: "yellow", emojis: ["🩸♾️"], desc: "This is the Suicidal emoji combo, used to represent people who have, might, or will kill themselves. They should be respected and cared for so they do not commit suicide." },
+  { color: "yellow", emojis: ["🧷❤️‍🩹"], desc: "This is the Self-harm healing emoji combo, used to represent people who are recovering when they hurt themselves (and almost commit suicide) due to a lot of reasons and should be respected as they are recovering." },
+  { color: "yellow", emojis: ["⛓️🍦"], desc: "This is the Rape survivor emoji combo, used to represent people who have been raped (sexually abused without consent) and survived. Treat them with care." },
+  { color: "yellow", emojis: ["🍥💤"], desc: "This is the Abuse survivor emoji combo, used to represent people who have survived abuse, please give them respect!" },
+  { color: "yellow", emojis: ["🌈♾️"], desc: "This is the Autistic emoji combo, used to represent people with Autism. Please treat them with care as their brains work differently." },
+  { color: "yellow", emojis: ["🌈🦋"], desc: "This is the ADHD (Attention deficit hyperactivity disorder) and represents people with ADHD, Give respect to them especially if they have inattention, or hyperactivity as it is normal to them." },
+  { color: "yellow", emojis: ["🌈⌛️","🌈⏳"], desc: "This is the OCD (Obsessive compulsive disorder) and is used to represent people with OCD and you must treat them with kindness" }
+];
+
+function checkCombo() {
+  const e1 = document.getElementById("emoji1").value.trim();
+  const e2 = document.getElementById("emoji2").value.trim();
+  const combo = e1 + e2;
+  const comboRev = e2 + e1;
+  const result = document.getElementById("result");
+  let found = false;
+
+  for (const entry of combos) {
+    if (entry.emojis.includes(combo) || entry.emojis.includes(comboRev)) {
+      found = true;
+      result.textContent = entry.desc;
+      if (entry.color === "red") result.style.color = "#c00";
+      else if (entry.color === "yellow") result.style.color = "#d8a400";
+      else result.style.color = "#2b8a3e";
+      break;
+    }
+  }
+
+  if (!found) {
+    result.textContent = "The emoji combo is SAFE! well to our system it is..";
+    result.style.color = "#2b8a3e";
+  }
+}
+</script>
+
+</body>
+</html>
