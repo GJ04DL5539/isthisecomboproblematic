@@ -4,8 +4,8 @@
   "description": "Check if an emoji combo is problematic or safe.",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#f6f7fb",
-  "theme_color": "#0078ff",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
   "icons": [
     {
       "src": "https://i.ibb.co/8nCYyHtv/Untitled190-20251011093149.png",
