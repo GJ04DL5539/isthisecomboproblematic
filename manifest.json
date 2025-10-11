@@ -1,6 +1,6 @@
 {
   "name": "Is this emoji combo Problematic?",
-  "short_name": "EmojiChecker",
+  "short_name": "Problematic combo checker",
   "description": "Check if an emoji combo is problematic or safe.",
   "start_url": "./index.html",
   "display": "standalone",
